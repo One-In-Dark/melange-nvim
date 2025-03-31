@@ -8,6 +8,7 @@ return {
     com     = "#C1A78E",
     fg      = "#ECE1D7",
     fg2     = "#EAC9A4",
+    vis     = "#736861",
   },
   b = {
     red     = "#D47766",

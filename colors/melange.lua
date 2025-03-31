@@ -108,7 +108,7 @@ for name, attrs in pairs {
   MatchParen = 'Substitute',
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
   Substitute = { bg = d.red, bold = bold },
-  Visual = { bg = a.sel },
+  Visual = { bg = a.vis },
   -- VisualNOS = {},
 
   Conceal = { fg = a.com },
