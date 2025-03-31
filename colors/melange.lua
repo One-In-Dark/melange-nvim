@@ -80,7 +80,7 @@ for name, attrs in pairs {
   Substitute = { bg = d.red, bold = bold },
   -- QuickFixLine = {},
   -- IncSearch = {},
-  Visual = { bg = a.sel },
+  Visual = { bg = a.vis },
   -- VisualNOS = {},
 
   Conceal = { fg = a.com },
