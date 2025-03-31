@@ -285,7 +285,7 @@ for name, attrs in pairs {
   ['@markup.heading.6'] = '@markup.heading.3',
 
   ['@markup.quote'] = 'Comment',
-  ['@markup.math'] = '@markup.raw',
+  ['@markup.math'] = { fg = a.fg2 },
 
   ['@markup.link'] = { underline = underline },
   -- ['@markup.link.label'] = {},
