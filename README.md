@@ -12,6 +12,7 @@
   - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
   - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
   - [mini.nvim](https://github.com/echasnovski/mini.nvim)
+  - [rainbow-delimiters.nvim](https://github.com/hiphish/rainbow-delimiters.nvim): Set `vim.g.melange_rainbow_control_flow = true` to use warm-color delimiters only
 - Support for various terminal emulators/multiplexers (see [`term/`](term/)):
   - [Alacritty](https://github.com/alacritty/alacritty)
   - [Foot](https://codeberg.org/dnkl/foot)
