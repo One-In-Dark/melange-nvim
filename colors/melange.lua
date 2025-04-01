@@ -14,14 +14,14 @@ local d = palette.d -- Background colors
 
 local bold, italic, underline, undercurl, strikethrough
 if vim.g.melange_enable_font_variants == true or vim.g.melange_enable_font_variants == nil then
-  --- Enable all font attributes by default
+  -- Enable all font attributes by default
   bold = true
   italic = true
   underline = true
   undercurl = true
   strikethrough = true
 elseif type(vim.g.melange_enable_font_variants) == 'table' then
-  --- Enable only selected font attributes
+  -- Enable only selected font attributes
   bold = vim.g.melange_enable_font_variants.bold
   italic = vim.g.melange_enable_font_variants.italic
   underline = vim.g.melange_enable_font_variants.underline
