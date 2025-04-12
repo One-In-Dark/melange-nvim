@@ -29,6 +29,26 @@ elseif type(vim.g.melange_enable_font_variants) == 'table' then
   strikethrough = vim.g.melange_enable_font_variants.strikethrough
 end
 
+local rainbowPalette = vim.g.melange_rainbow_control_flow and
+{
+  Red = { fg = b.red },
+  Yellow = { fg = b.yellow },
+  Blue = { fg = c.yellow },
+  Orange = { fg = d.yellow },
+  Green = { fg = b.red },
+  Violet = { fg = b.yellow },
+  Cyan = { fg = c.yellow },
+} or
+{
+  Red = { fg = b.red },
+  Yellow = { fg = b.yellow },
+  Blue = { fg = b.blue },
+  Orange = { fg = c.yellow },
+  Green = { fg = b.green },
+  Violet = { fg = c.magenta },
+  Cyan = { fg = b.cyan },
+}
+
 for name, attrs in pairs {
   ---- :help highlight-default -------------------------------
 
@@ -633,13 +653,13 @@ for name, attrs in pairs {
 
   ---- "hiphish/rainbow-delimiters.nvim" :h rb-delimiters-colors
 
-  RainbowDelimiterRed = { fg = b.red },
-  RainbowDelimiterYellow = { fg = b.yellow },
-  RainbowDelimiterBlue = { fg = b.blue },
-  RainbowDelimiterOrange = { fg = c.yellow },
-  RainbowDelimiterGreen = { fg = b.green },
-  RainbowDelimiterViolet = { fg = c.magenta },
-  RainbowDelimiterCyan = { fg = b.cyan },
+  RainbowDelimiterRed = rainbowPalette.Red,
+  RainbowDelimiterYellow = rainbowPalette.Yellow,
+  RainbowDelimiterBlue = rainbowPalette.Blue,
+  RainbowDelimiterOrange = rainbowPalette.Orange,
+  RainbowDelimiterGreen = rainbowPalette.Green,
+  RainbowDelimiterViolet = rainbowPalette.Violet,
+  RainbowDelimiterCyan = rainbowPalette.Cyan,
 } do
   if type(attrs) == 'table' then
     vim.api.nvim_set_hl(0, name, attrs)
