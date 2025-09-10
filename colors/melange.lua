@@ -14,20 +14,40 @@ local d = palette.d -- Background colors
 
 local bold, italic, underline, undercurl, strikethrough
 if vim.g.melange_enable_font_variants == true or vim.g.melange_enable_font_variants == nil then
-  --- Enable all font attributes by default
+  -- Enable all font attributes by default
   bold = true
   italic = true
   underline = true
   undercurl = true
   strikethrough = true
 elseif type(vim.g.melange_enable_font_variants) == 'table' then
-  --- Enable only selected font attributes
+  -- Enable only selected font attributes
   bold = vim.g.melange_enable_font_variants.bold
   italic = vim.g.melange_enable_font_variants.italic
   underline = vim.g.melange_enable_font_variants.underline
   undercurl = vim.g.melange_enable_font_variants.undercurl
   strikethrough = vim.g.melange_enable_font_variants.strikethrough
 end
+
+local rainbowPalette = vim.g.melange_rainbow_control_flow and
+{
+  Red = { fg = b.red },
+  Yellow = { fg = b.yellow },
+  Blue = { fg = c.yellow },
+  Orange = { fg = d.yellow },
+  Green = { fg = b.red },
+  Violet = { fg = b.yellow },
+  Cyan = { fg = c.yellow },
+} or
+{
+  Red = { fg = b.red },
+  Yellow = { fg = b.yellow },
+  Blue = { fg = b.blue },
+  Orange = { fg = c.yellow },
+  Green = { fg = b.green },
+  Violet = { fg = c.magenta },
+  Cyan = { fg = b.cyan },
+}
 
 for name, attrs in pairs {
   ---- :help highlight-default -------------------------------
@@ -88,7 +108,7 @@ for name, attrs in pairs {
   MatchParen = 'Substitute',
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
   Substitute = { bg = d.red, bold = bold },
-  Visual = { bg = a.sel },
+  Visual = { bg = a.vis },
   -- VisualNOS = {},
 
   Conceal = { fg = a.com },
@@ -265,7 +285,7 @@ for name, attrs in pairs {
   ['@markup.heading.6'] = '@markup.heading.3',
 
   ['@markup.quote'] = 'Comment',
-  ['@markup.math'] = '@markup.raw',
+  ['@markup.math'] = { fg = a.fg2 },
 
   ['@markup.link'] = { underline = underline },
   -- ['@markup.link.label'] = {},
@@ -344,18 +364,17 @@ for name, attrs in pairs {
   -- ['@lsp.type.number'] = {},
   -- ['@lsp.type.operator'] = {},
   ['@lsp.type.parameter'] = { fg = a.fg, bold = bold },
-  -- ['@lsp.type.property'] = {},
+  ['@lsp.type.property'] = { fg = a.fg2 },
   -- ['@lsp.type.struct'] = {},
   -- ['@lsp.type.type'] = {},
   -- ['@lsp.type.typeParameter'] = {},
-  -- ['@lsp.type.variable'] = {},
+  ['@lsp.type.variable'] = 'Identifier',
 
   ['@lsp.typemod.comment.documentation'] = '@comment.documentation',
   -- ['@lsp.typemod.variable.functionScope'] = {},
   ['@lsp.typemod.variable.globalScope'] = { italic = italic },
 
   ---- netrw -------------------------------------------------
-
   -- netrwDir = 'Directory',
   netrwClassify = 'Delimiter',
   netrwTreeBar = 'Delimiter',

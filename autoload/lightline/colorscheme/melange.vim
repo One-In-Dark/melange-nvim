@@ -10,7 +10,7 @@ let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': 
 
 let s:p.normal.left     = [[[s:grays.float, 0], [s:grays.com, 0]], [[s:grays.com, 0], [s:grays.float, 0]]]
 let s:p.normal.middle   = [[[s:grays.com, 0], [s:grays.float, 0]]]
-let s:p.normal.right    = [[[s:grays.float, 0], [s:grays.com, 0]], [[s:grays.float, 0], [s:grays.ui, 0]]]
+let s:p.normal.right    = [[[s:grays.float, 0], [s:grays.com, 0]], [[s:grays.bg, 0], [s:grays.ui, 0]]]
 let s:p.normal.warning  = [[[s:grays.float, 0], [s:bright.yellow, 0]]]
 let s:p.normal.error    = [[[s:grays.float, 0], [s:bright.red, 0]]]
 
