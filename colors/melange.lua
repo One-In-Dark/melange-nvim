@@ -29,24 +29,22 @@ elseif type(vim.g.melange_enable_font_variants) == 'table' then
   strikethrough = vim.g.melange_enable_font_variants.strikethrough
 end
 
-local rainbowPalette = vim.g.melange_rainbow_control_flow and
-{
-  Red = { fg = b.red },
-  Yellow = { fg = b.yellow },
-  Blue = { fg = c.yellow },
-  Orange = { fg = d.yellow },
-  Green = { fg = b.red },
-  Violet = { fg = b.yellow },
-  Cyan = { fg = c.yellow },
-} or
-{
-  Red = { fg = b.red },
-  Yellow = { fg = b.yellow },
-  Blue = { fg = b.blue },
-  Orange = { fg = c.yellow },
-  Green = { fg = b.green },
-  Violet = { fg = c.magenta },
-  Cyan = { fg = b.cyan },
+local rainbowPalette = vim.g.melange_rainbow_control_flow and {
+   Red = { fg = b.red },
+   Yellow = { fg = b.yellow },
+   Blue = { fg = c.yellow },
+   Orange = { fg = b.red },
+   Green = { fg = b.yellow },
+   Violet = { fg = c.yellow },
+   Cyan = { fg = b.green },
+} or {
+   Red = { fg = b.red },
+   Yellow = { fg = b.yellow },
+   Blue = { fg = b.blue },
+   Orange = { fg = c.yellow },
+   Green = { fg = b.green },
+   Violet = { fg = c.magenta },
+   Cyan = { fg = b.cyan },
 }
 
 for name, attrs in pairs {
