@@ -29,23 +29,26 @@ elseif type(vim.g.melange_enable_font_variants) == 'table' then
   strikethrough = vim.g.melange_enable_font_variants.strikethrough
 end
 
-local rainbowPalette = vim.g.melange_rainbow_control_flow and {
-   Red = { fg = b.red },
-   Yellow = { fg = b.yellow },
-   Blue = { fg = c.yellow },
-   Orange = { fg = b.red },
-   Green = { fg = b.yellow },
-   Violet = { fg = c.yellow },
-   Cyan = { fg = b.green },
-} or {
-   Red = { fg = b.red },
-   Yellow = { fg = b.yellow },
-   Blue = { fg = b.blue },
-   Orange = { fg = c.yellow },
-   Green = { fg = b.green },
-   Violet = { fg = c.magenta },
-   Cyan = { fg = b.cyan },
-}
+local rainbowPalette =
+  vim.g.melange_rainbow_control_flow
+  and {
+    Red = { fg = b.red },
+    Yellow = { fg = b.yellow },
+    Blue = { fg = c.yellow },
+    Orange = { fg = b.red },
+    Green = { fg = b.yellow },
+    Violet = { fg = c.yellow },
+    Cyan = { fg = b.green },
+  }
+  or {
+    Red = { fg = b.red },
+    Yellow = { fg = b.yellow },
+    Blue = { fg = b.blue },
+    Orange = { fg = c.yellow },
+    Green = { fg = b.green },
+    Violet = { fg = c.magenta },
+    Cyan = { fg = b.cyan },
+  }
 
 for name, attrs in pairs {
   ---- :help highlight-default -------------------------------
@@ -363,9 +366,9 @@ for name, attrs in pairs {
   -- ['@lsp.type.operator'] = {},
   ['@lsp.type.parameter'] = { fg = a.fg, bold = bold },
   ['@lsp.type.property'] = { fg = a.fg2 },
-  -- ['@lsp.type.struct'] = 'Structure',
-  -- ['@lsp.type.type'] = 'Type',
-  -- ['@lsp.type.typeParameter'] = 'TypeDef',
+  -- ['@lsp.type.struct'] = {},
+  -- ['@lsp.type.type'] = {},
+  -- ['@lsp.type.typeParameter'] = {},
   ['@lsp.type.variable'] = 'Identifier',
 
   ['@lsp.typemod.comment.documentation'] = '@comment.documentation',
