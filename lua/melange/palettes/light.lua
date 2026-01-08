@@ -4,6 +4,7 @@ return {
     bg      = "#F1F1F1",
     float   = "#E9E1DB",
     sel     = "#D9D3CE",
+    vis     = "#D9D3CE",
     ui      = "#A98A78",
     com     = "#7D6658",
     fg      = "#54433A",

@@ -4,11 +4,11 @@ return {
     bg      = "#292522",
     float   = "#34302C",
     sel     = "#403A36",
+    vis     = "#6F645D",
     ui      = "#867462",
     com     = "#C1A78E",
     fg      = "#ECE1D7",
     fg2     = "#FBE3C7",
-    vis     = "#6F645D",
   },
   b = {
     red     = "#D47766",
