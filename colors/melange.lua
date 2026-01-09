@@ -295,7 +295,7 @@ for name, attrs in pairs {
   ['@markup.raw'] = '@string.special',
   ['@markup.raw.block'] = { fg = a.com },
 
-  ['@markup.list'] = 'Delimiter',
+  ['@markup.list'] = '@punctuation.delimiter',
   -- ['@markup.list.checked'] = {},
   -- ['@markup.list.unchecked'] = {},
 
