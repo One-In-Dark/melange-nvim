@@ -215,7 +215,7 @@ for name, attrs in pairs {
 
   -- ['@attribute'] = {},
   -- ['@attribute.builtin'] = {},
-  -- ['@property'] = {},
+  ['@property'] = { fg = a.fg2 },
 
   -- ['@function'] = {},
   ['@function.builtin'] = '@function',
@@ -344,7 +344,7 @@ for name, attrs in pairs {
   -- ['@lsp.type.number'] = {},
   -- ['@lsp.type.operator'] = {},
   ['@lsp.type.parameter'] = { fg = a.fg, bold = bold },
-  -- ['@lsp.type.property'] = {},
+  ['@lsp.type.property'] = '@property',
   -- ['@lsp.type.struct'] = {},
   -- ['@lsp.type.type'] = {},
   -- ['@lsp.type.typeParameter'] = {},
