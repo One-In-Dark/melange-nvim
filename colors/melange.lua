@@ -542,7 +542,7 @@ for name, attrs in pairs {
   -- BlinkCmpSource = {},
   -- BlinkCmpKind = {},
   BlinkCmpKindText = '@text',
-  BlinkCmpKindMethod = '@method',
+  BlinkCmpKindMethod = '@function.method',
   BlinkCmpKindFunction = '@function',
   BlinkCmpKindConstructor = '@constructor',
   BlinkCmpKindField = '@field',
