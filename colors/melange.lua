@@ -2,31 +2,48 @@ vim.cmd 'highlight clear'
 vim.cmd 'syntax reset'
 vim.g.colors_name = 'melange'
 
-local bg = vim.opt.background:get()
+require('melange').set_config()
 
--- package.loaded['melange/palettes/' .. bg] = nil -- Only needed for development
-local palette = require('melange/palettes/' .. bg)
+local msg_bg_err = [=[
+[melange] Warning: 'background' option is not set to "dark".
+Melange-dark supports dark background only.]=]
 
-local a = palette.a -- Grays
-local b = palette.b -- Bright foreground colors
-local c = palette.c -- Foreground colors
-local d = palette.d -- Background colors
+local bg = vim.o.background
+if bg ~= 'dark' then
+  vim.notify(msg_bg_err, vim.log.levels.WARN, { title = 'Melange' })
+end
+local palette = require 'melange.palette'
 
-local bold, italic, underline, undercurl, strikethrough
-if vim.g.melange_enable_font_variants == true or vim.g.melange_enable_font_variants == nil then
-  --- Enable all font attributes by default
-  bold = true
-  italic = true
-  underline = true
-  undercurl = true
-  strikethrough = true
-elseif type(vim.g.melange_enable_font_variants) == 'table' then
-  --- Enable only selected font attributes
-  bold = vim.g.melange_enable_font_variants.bold
-  italic = vim.g.melange_enable_font_variants.italic
-  underline = vim.g.melange_enable_font_variants.underline
-  undercurl = vim.g.melange_enable_font_variants.undercurl
-  strikethrough = vim.g.melange_enable_font_variants.strikethrough
+local a = palette.grays -- Grays
+local b = palette.bright -- Bright foreground colors
+local c = palette.ansi -- Foreground colors
+local d = palette.dark -- Background colors
+
+local bold = vim.g.melange.enable_font_variants.bold
+local italic = vim.g.melange.enable_font_variants.italic
+local underline = vim.g.melange.enable_font_variants.underline
+local undercurl = vim.g.melange.enable_font_variants.undercurl
+local strikethrough = vim.g.melange.enable_font_variants.strikethrough
+
+local rainbow_palette = {
+  Red = { fg = b.red },
+  Yellow = { fg = b.yellow },
+  Blue = { fg = b.blue },
+  Orange = { fg = c.yellow },
+  Green = { fg = b.green },
+  Violet = { fg = c.magenta },
+  Cyan = { fg = b.cyan },
+}
+if vim.g.melange.rainbow.warm_color_only then
+  rainbow_palette = {
+    Red = { fg = b.red },
+    Yellow = { fg = c.yellow },
+    Blue = { fg = c.red },
+    Orange = { fg = b.yellow },
+    Green = { fg = b.red },
+    Violet = { fg = c.yellow },
+    Cyan = { fg = d.yellow },
+  }
 end
 
 for name, attrs in pairs {
@@ -34,7 +51,7 @@ for name, attrs in pairs {
 
   Normal = { fg = a.fg, bg = a.bg },
   NormalFloat = { bg = a.float },
-  -- FloatBorder = { },
+  -- FloatBorder = {},
   FloatTitle = { fg = c.yellow, bg = a.float },
   FloatFooter = { fg = c.yellow, bg = a.float },
   -- NormalNC = {},
@@ -44,12 +61,12 @@ for name, attrs in pairs {
   -- CursorIM = {},
   -- TermCursor = {},
 
-  ColorColumn = { bg = a.float },
-  CursorColumn = 'ColorColumn',
-  CursorLine = 'ColorColumn',
-  WinSeparator = { fg = a.ui },
+  ColorColumn = { bg = a.cursor },
+  CursorColumn = { bg = a.cursor },
+  CursorLine = 'CursorColumn',
+  WinSeparator = { fg = a.ui_hard },
 
-  LineNr = { fg = a.ui },
+  LineNr = { fg = a.ui_hard },
   -- LineNrAbove = {},
   -- LineNrBelow = {},
   CursorLineNr = { fg = c.yellow },
@@ -88,11 +105,11 @@ for name, attrs in pairs {
   MatchParen = 'Substitute',
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
   Substitute = { bg = d.red, bold = bold },
-  Visual = { bg = a.sel },
+  Visual = { bg = a.visual },
   -- VisualNOS = {},
 
   Conceal = { fg = a.com },
-  Whitespace = { fg = a.ui },
+  Whitespace = { fg = a.ui_hard },
   -- EndOfBuffer = {},
   NonText = 'Whitespace',
   SpecialKey = 'Whitespace',
@@ -215,7 +232,7 @@ for name, attrs in pairs {
 
   -- ['@attribute'] = {},
   -- ['@attribute.builtin'] = {},
-  -- ['@property'] = {},
+  ['@property'] = { fg = a.fg_theme },
 
   -- ['@function'] = {},
   ['@function.builtin'] = '@function',
@@ -265,7 +282,7 @@ for name, attrs in pairs {
   ['@markup.heading.6'] = '@markup.heading.3',
 
   ['@markup.quote'] = 'Comment',
-  ['@markup.math'] = '@markup.raw',
+  ['@markup.math'] = { fg = a.fg_theme },
 
   ['@markup.link'] = { underline = underline },
   -- ['@markup.link.label'] = {},
@@ -633,13 +650,13 @@ for name, attrs in pairs {
 
   ---- "hiphish/rainbow-delimiters.nvim" :h rb-delimiters-colors
 
-  RainbowDelimiterRed = { fg = b.red },
-  RainbowDelimiterYellow = { fg = b.yellow },
-  RainbowDelimiterBlue = { fg = b.blue },
-  RainbowDelimiterOrange = { fg = c.yellow },
-  RainbowDelimiterGreen = { fg = b.green },
-  RainbowDelimiterViolet = { fg = c.magenta },
-  RainbowDelimiterCyan = { fg = b.cyan },
+  RainbowDelimiterRed = rainbow_palette.Red,
+  RainbowDelimiterYellow = rainbow_palette.Yellow,
+  RainbowDelimiterBlue = rainbow_palette.Blue,
+  RainbowDelimiterOrange = rainbow_palette.Orange,
+  RainbowDelimiterGreen = rainbow_palette.Green,
+  RainbowDelimiterViolet = rainbow_palette.Violet,
+  RainbowDelimiterCyan = rainbow_palette.Cyan,
 } do
   if type(attrs) == 'table' then
     vim.api.nvim_set_hl(0, name, attrs)

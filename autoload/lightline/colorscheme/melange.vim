@@ -1,10 +1,9 @@
 lua << EOF
-local variant = vim.opt.background:get()
-vim.b.lightline_melange_palette = require("melange/palettes/" .. variant)
+vim.b.lightline_melange_palette = require("melange.palette")
 EOF
-let s:grays = b:lightline_melange_palette.a
-let s:bright = b:lightline_melange_palette.b
-let s:normal = b:lightline_melange_palette.c
+let s:grays = b:lightline_melange_palette.grays
+let s:bright = b:lightline_melange_palette.bright
+let s:normal = b:lightline_melange_palette.ansi
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 
@@ -27,9 +26,9 @@ let s:p.replace.right   = [[[s:grays.bg, 0], [s:bright.red, 0]], [[s:grays.float
 let s:p.visual.left     = [[[s:grays.bg, 0], [s:bright.magenta, 0]], [[s:grays.com, 0], [s:grays.float, 0]]]
 let s:p.visual.right    = [[[s:grays.bg, 0], [s:bright.magenta, 0]], [[s:grays.float, 0], [s:normal.magenta, 0]]]
 
-let s:p.tabline.left    = [[[s:grays.ui, 0], [s:grays.sel, 0]]]
+let s:p.tabline.left    = [[[s:grays.ui_hard, 0], [s:grays.sel, 0]]]
 let s:p.tabline.middle  = [[[s:grays.com, 0], [s:grays.bg, 0]]]
-let s:p.tabline.right   = [[[s:grays.ui, 0], [s:grays.sel, 0]]]
+let s:p.tabline.right   = [[[s:grays.ui_hard, 0], [s:grays.sel, 0]]]
 let s:p.tabline.tabsel  = [[[s:grays.float, 0], [s:grays.com, 0]]]
 
 let g:lightline#colorscheme#melange#palette = lightline#colorscheme#flatten(s:p)
