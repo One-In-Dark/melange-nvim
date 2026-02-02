@@ -25,15 +25,7 @@ local underline = vim.g.melange.enable_font_variants.underline
 local undercurl = vim.g.melange.enable_font_variants.undercurl
 local strikethrough = vim.g.melange.enable_font_variants.strikethrough
 
-local rainbow_palette = {
-  Red = { fg = b.red },
-  Yellow = { fg = b.yellow },
-  Blue = { fg = b.blue },
-  Orange = { fg = c.yellow },
-  Green = { fg = b.green },
-  Violet = { fg = c.magenta },
-  Cyan = { fg = b.cyan },
-}
+local rainbow_palette
 if vim.g.melange.rainbow.warm_color_only then
   rainbow_palette = {
     Red = { fg = b.red },
@@ -43,6 +35,16 @@ if vim.g.melange.rainbow.warm_color_only then
     Green = { fg = b.red },
     Violet = { fg = c.yellow },
     Cyan = { fg = d.yellow },
+  }
+else
+  rainbow_palette = {
+    Red = { fg = b.red },
+    Yellow = { fg = b.yellow },
+    Blue = { fg = b.blue },
+    Orange = { fg = c.yellow },
+    Green = { fg = b.green },
+    Violet = { fg = c.magenta },
+    Cyan = { fg = b.cyan },
   }
 end
 
