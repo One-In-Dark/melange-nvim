@@ -5,7 +5,7 @@ let s:grays = b:lightline_melange_palette.grays
 let s:bright = b:lightline_melange_palette.bright
 let s:normal = b:lightline_melange_palette.ansi
 
-let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
+let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}, 'select': {}}
 
 let s:p.normal.left     = [[[s:grays.float, 0], [s:grays.com, 0]], [[s:grays.com, 0], [s:grays.float, 0]]]
 let s:p.normal.middle   = [[[s:grays.com, 0], [s:grays.float, 0]]]
@@ -25,6 +25,9 @@ let s:p.replace.right   = [[[s:grays.bg, 0], [s:bright.red, 0]], [[s:grays.float
 
 let s:p.visual.left     = [[[s:grays.bg, 0], [s:bright.magenta, 0]], [[s:grays.com, 0], [s:grays.float, 0]]]
 let s:p.visual.right    = [[[s:grays.bg, 0], [s:bright.magenta, 0]], [[s:grays.float, 0], [s:normal.magenta, 0]]]
+
+let s:p.select.left     = [[[s:grays.bg, 0], [s:bright.blue, 0]], [[s:grays.com, 0], [s:grays.float, 0]]]
+let s:p.select.right    = [[[s:grays.bg, 0], [s:bright.magenta, 0]], [[s:grays.float, 0], [s:normal.magenta, 0]]]
 
 let s:p.tabline.left    = [[[s:grays.ui_hard, 0], [s:grays.sel, 0]]]
 let s:p.tabline.middle  = [[[s:grays.com, 0], [s:grays.bg, 0]]]

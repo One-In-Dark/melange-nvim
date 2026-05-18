@@ -4,9 +4,7 @@ vim.g.colors_name = 'melange'
 
 require('melange').set_config()
 
-local msg_bg_err = [=[
-[melange] Warning: 'background' option is not set to "dark".
-Melange-dark supports dark background only.]=]
+local msg_bg_err = [=[[melange] Warning: 'background' option is not set to "dark". Melange-dark supports dark background only.]=]
 
 local bg = vim.o.background
 if bg ~= 'dark' then

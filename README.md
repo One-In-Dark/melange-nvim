@@ -95,6 +95,7 @@ vim.g.melange = {
 }
 ```
 
+
 ## Design
 
 ![melange-logo](logo.svg)

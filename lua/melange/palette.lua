@@ -27,9 +27,8 @@ return {
   },
   bright      = {
     red       = "#d47766",
-    -- yellow    = "#edc678",
-    yellow    = "#EBC06D",
-    -- orange    = "#e8ad7d",
+    yellow    = "#ebc06d",
+    orange    = "#e8ad7d",
     green     = "#85b695",
     cyan      = "#89b3b6",
     blue      = "#a3a9ce",
