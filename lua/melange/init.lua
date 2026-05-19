@@ -12,15 +12,14 @@ local defaults = {
   },
 }
 
-local function setup(opts)
+local melange = {}
+
+function melange.setup(opts)
   vim.g.melange = opts
 end
 
-local function set_config()
+function melange.set_config()
   vim.g.melange = vim.tbl_deep_extend("force", defaults, vim.g.melange or {})
 end
 
-return {
-  setup = setup,
-  set_config = set_config,
-}
+return melange

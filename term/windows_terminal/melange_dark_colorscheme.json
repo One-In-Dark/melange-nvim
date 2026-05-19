@@ -1,6 +1,6 @@
 {
   "background": "#292522",
-  "black": "#34302C",
+  "black": "#2F2B27",
   "blue": "#7F91B2",
   "brightBlack": "#867462",
   "brightBlue": "#A3A9CE",
@@ -17,7 +17,7 @@
   "name": "melange dark",
   "purple": "#B380B0",
   "red": "#BD8183",
-  "selectionBackground": "#403A36",
-  "white": "#C1A78E",
+  "selectionBackground": "#504539",
+  "white": "#C0A78E",
   "yellow": "#E49B5D"
 }

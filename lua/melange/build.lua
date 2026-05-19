@@ -1,6 +1,6 @@
 --- Templates for various terminal configuration formats
 
-local uv = vim.loop
+local uv = vim.uv
 
 -- Get the directory where the melange plugin is located
 local function get_plugin_dir()
@@ -9,7 +9,7 @@ end
 
 -- Write a string to a file
 local function fwrite(str, file)
-  local fd = assert(uv.fs_open(file, 'w', 420), 'Failed  to write to file ' .. file) -- 0o644
+  local fd = assert(uv.fs_open(file, 'w', 420), 'Failed to write to file ' .. file) -- 0o644
   uv.fs_write(fd, str, -1)
   assert(uv.fs_close(fd))
 end
@@ -25,36 +25,40 @@ end
 
 -- Turn melange naming conventions into more common ANSI names
 local function get_palette(variant)
-  package.loaded['melange/palettes/' .. variant] = nil
-  local colors = require('melange/palettes/' .. variant)
+  assert(variant == 'dark', 'Invalid variant: ' .. variant)
+  local palette = require 'melange.palette'
+  local a = palette.grays -- Grays
+  local b = palette.bright -- Bright foreground colors
+  local c = palette.ansi -- Foreground colors
+  local d = palette.dark -- Background colors
   -- stylua: ignore
   return {
-    bg             = colors.a.bg,
-    fg             = colors.a.fg,
-    dark_black     = colors.a.bg,
-    dark_red       = colors.d.red,
-    dark_green     = colors.d.green,
-    dark_yellow    = colors.d.yellow,
-    dark_blue      = colors.d.blue,
-    dark_magenta   = colors.d.magenta,
-    dark_cyan      = colors.d.cyan,
-    dark_white     = colors.a.sel,
-    black          = colors.a.float,
-    red            = colors.c.red,
-    green          = colors.c.green,
-    yellow         = colors.c.yellow,
-    blue           = colors.c.blue,
-    magenta        = colors.c.magenta,
-    cyan           = colors.c.cyan,
-    white          = colors.a.com,
-    bright_black   = colors.a.ui,
-    bright_red     = colors.b.red,
-    bright_green   = colors.b.green,
-    bright_yellow  = colors.b.yellow,
-    bright_blue    = colors.b.blue,
-    bright_magenta = colors.b.magenta,
-    bright_cyan    = colors.b.cyan,
-    bright_white   = colors.a.fg,
+    bg             = a.bg,
+    fg             = a.fg,
+    dark_black     = a.bg,
+    dark_red       = d.red,
+    dark_green     = d.green,
+    dark_yellow    = d.yellow,
+    dark_blue      = d.blue,
+    dark_magenta   = d.magenta,
+    dark_cyan      = d.cyan,
+    dark_white     = a.sel,
+    black          = a.float,
+    red            = c.red,
+    green          = c.green,
+    yellow         = c.yellow,
+    blue           = c.blue,
+    magenta        = c.magenta,
+    cyan           = c.cyan,
+    white          = a.com,
+    bright_black   = a.ui,
+    bright_red     = b.red,
+    bright_green   = b.green,
+    bright_yellow  = b.yellow,
+    bright_blue    = b.blue,
+    bright_magenta = b.magenta,
+    bright_cyan    = b.cyan,
+    bright_white   = a.fg,
     variant        = variant,
   }
 end
@@ -151,7 +155,7 @@ local function generate_windows_terminal_theme(variant, palette)
 end
 
 local function build(terminals)
-  for _, variant in ipairs { 'dark', 'light' } do
+  for _, variant in ipairs { 'dark' } do
     local palette = get_palette(variant)
 
     for term, attrs in pairs(terminals) do
@@ -176,7 +180,7 @@ local function build(terminals)
     end
 
     fwrite(generate_iterm2(palette), string.format('%s/term/iterm2/melange_%s.itermcolors', get_plugin_dir(), variant))
-    fwrite(vim.json.encode(palette), get_plugin_dir() .. string.format('/melange_%s.json', variant))
+    fwrite(vim.json.encode(palette, { indent = "  ", sort_keys = true }), get_plugin_dir() .. string.format('/melange_%s.json', variant))
   end
 end
 
