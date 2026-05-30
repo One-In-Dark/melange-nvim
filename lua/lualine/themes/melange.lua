@@ -1,8 +1,7 @@
-local bg = vim.opt.background:get()
-local palette = require('melange/palettes/' .. bg)
-local grays = palette.a
-local bright = palette.b
-local normal = palette.c
+local palette = require 'melange.palette'
+local grays = palette.grays
+local bright = palette.bright
+local normal = palette.ansi
 
 return {
   normal = {
