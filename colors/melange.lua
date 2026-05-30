@@ -2,29 +2,31 @@ vim.cmd 'highlight clear'
 vim.cmd 'syntax reset'
 vim.g.colors_name = 'melange'
 
-require('melange').set_config()
-
-local msg_bg_err = [=[[melange] Warning: 'background' option is not set to "dark". Melange-dark supports dark background only.]=]
-
 local bg = vim.o.background
 if bg ~= 'dark' then
-  vim.notify(msg_bg_err, vim.log.levels.WARN, { title = 'Melange' })
+  vim.notify(
+    [=[Warning: 'background' option is not set to "dark". Melange-dark supports dark background only.]=],
+    vim.log.levels.WARN,
+    { title = 'Melange' }
+  )
 end
 local palette = require 'melange.palette'
+
+local config = vim.g.melange
 
 local a = palette.grays -- Grays
 local b = palette.bright -- Bright foreground colors
 local c = palette.ansi -- Foreground colors
 local d = palette.dark -- Background colors
 
-local bold = vim.g.melange.enable_font_variants.bold
-local italic = vim.g.melange.enable_font_variants.italic
-local underline = vim.g.melange.enable_font_variants.underline
-local undercurl = vim.g.melange.enable_font_variants.undercurl
-local strikethrough = vim.g.melange.enable_font_variants.strikethrough
+local bold = config.enable_font_variants.bold
+local italic = config.enable_font_variants.italic
+local underline = config.enable_font_variants.underline
+local undercurl = config.enable_font_variants.undercurl
+local strikethrough = config.enable_font_variants.strikethrough
 
 local rainbow_palette
-if vim.g.melange.rainbow.warm_color_only then
+if config.rainbow.warm_color_only then
   rainbow_palette = {
     Red = { fg = b.red },
     Yellow = { fg = c.yellow },
@@ -43,6 +45,19 @@ else
     Green = { fg = b.green },
     Violet = { fg = c.magenta },
     Cyan = { fg = b.cyan },
+  }
+end
+
+local markup_link_palette
+if config.markup.precise_link then
+  markup_link_palette = {
+    link = { fg = a.fg, underline = underline },
+    label = { fg = a.com },
+  }
+else
+  markup_link_palette = {
+    link = { underline = underline },
+    label = nil, -- fallback
   }
 end
 
@@ -284,8 +299,8 @@ for name, attrs in pairs {
   ['@markup.quote'] = 'Comment',
   ['@markup.math'] = { fg = a.fg_theme },
 
-  ['@markup.link'] = { underline = underline },
-  -- ['@markup.link.label'] = {},
+  ['@markup.link'] = markup_link_palette.link,
+  ['@markup.link.label'] = markup_link_palette.label,
   ['@markup.link.url'] = '@string.special.url',
 
   ['@markup.raw'] = '@string.special',

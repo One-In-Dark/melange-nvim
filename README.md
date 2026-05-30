@@ -48,7 +48,7 @@ You can install this plugin with any (Neo)Vim plugin manager.
 "One-In-Dark/melange-dark";
 ```
 
-[Lazy](https://github.com/folke/lazy.nvim), with the recommended config:
+[Lazy](https://github.com/folke/lazy.nvim), with the minimal config:
 ```lua
 { -- PluginSpec
    'One-In-Dark/melange-dark',
@@ -80,13 +80,17 @@ Since v0.10, neovim will enable [`termguicolors`](https://neovim.io/doc/user/opt
 Configs can be set via `g:melange` (Vimscript) or `require('melange').setup {opts}` (Lua). The defaults are (in Lua code):
 
 ```lua
-vim.g.melange = {
+local defaults = {
   enable_font_variants = {
     bold = true,
     italic = true,
     underline = true,
     undercurl = true,
     strikethrough = true,
+  },
+  markup = {
+    -- Distinguish @markup.link and @markup.link.label
+    precise_link = false,
   },
   rainbow = {
     -- Treat delimiters as control flow, thus using warm colors only.
