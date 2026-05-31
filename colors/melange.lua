@@ -12,7 +12,7 @@ if bg ~= 'dark' then
 end
 local palette = require 'melange.palette'
 
-local config = vim.g.melange
+local config = require('melange').get_config()
 
 local a = palette.grays -- Grays
 local b = palette.bright -- Bright foreground colors

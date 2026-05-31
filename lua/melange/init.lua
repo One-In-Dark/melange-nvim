@@ -23,4 +23,8 @@ function melange.setup(opts)
   vim.g.melange = vim.tbl_deep_extend("force", defaults, opts)
 end
 
+function melange.get_config()
+  return vim.g.melange
+end
+
 return melange
